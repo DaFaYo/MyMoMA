@@ -1,7 +1,16 @@
+
+
 <div *ngIf="objects$ | async as objects" >
-   Total number of objects:  {{ objects.total }}
-</div>
+    Total number of objects:  {{ objects.total }}
+ </div>
 <h3>Departments</h3>
-<div *ngFor="let department of departments$ | async">
-    {{ department.displayName }}
+<div *ngFor="let department of departments$ | async; let i = index" >
+    <div class="custom-control custom-checkbox"  #departmentsRef >
+        <input type="checkbox" class="custom-control-input" id="{{ i }}" >
+        <label [title]="department.departmentId" class="custom-control-label" for="{{ i }}">{{ department.displayName }}</label>
+    </div>   
 </div>
+<button  (click)="filterObjectsByDepartments()" type="submit" class="btn btn-primary">filter objecten</button>
+
+
+
