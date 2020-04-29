@@ -4,6 +4,7 @@ import { Objects } from '../shared/model/objects.model';
 import { ObjectService } from '../shared/service/object.service';
 import { Department } from '../shared/model/department.model';
 import { takeUntil } from 'rxjs/operators';
+import { ArtObject } from '../shared/model/art-object.model';
 
 
 @Component({
@@ -14,8 +15,9 @@ import { takeUntil } from 'rxjs/operators';
 export class FilterObjectsComponent implements OnDestroy, OnInit {
 
   private ngUnsubscribe = new Subject();
-  private objectsList: Object[] = [];
+  public objectsList: ArtObject[] = [];
   public objects: Objects;
+
   public departments: Department[];
 
   private totalPages: number;
@@ -30,8 +32,8 @@ export class FilterObjectsComponent implements OnDestroy, OnInit {
 
     this.getObjects();
     this.getDepartments();
-  }
 
+  }
 
   filterObjectsByDepartments(): void {
     
@@ -88,7 +90,7 @@ export class FilterObjectsComponent implements OnDestroy, OnInit {
            
            takeUntil(this.ngUnsubscribe)
         )
-        .subscribe((object: Object) => {
+        .subscribe((object: ArtObject) => {
           console.log("adding object with title:", object['title']);
           this.objectsList.push(object);
         });

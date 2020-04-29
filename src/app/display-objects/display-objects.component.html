@@ -1,1 +1,5 @@
-<p>display-objects works!</p>
+<div class="row">
+    <div *ngFor="let object in objects;" class="col-sm-4">
+        <app-display-object [object]="object" ></app-display-object>
+    </div>
+</div>

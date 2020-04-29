@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ArtObject } from '../shared/model/art-object.model';
 
 @Component({
   selector: 'app-display-objects',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisplayObjectsComponent implements OnInit {
 
+  @Input() objects: ArtObject[];
+  
+
   constructor() { }
 
   ngOnInit(): void {
+
+    // this.objects[0]
   }
 
 }

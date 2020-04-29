@@ -1,7 +1,7 @@
 import { Constituent } from './constituent.model';
 import { Tag } from './tag.model';
 
-export interface Object {
+export interface ArtObject {
     objectID: number;
     isHighlight: boolean;
     accessionNumber: string;

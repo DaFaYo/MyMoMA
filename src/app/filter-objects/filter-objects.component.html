@@ -1,12 +1,36 @@
-<div *ngIf="objects" >
-    Total number of objects:  {{ objects.total }}
- </div>
-<h3>Departments</h3>
-<div *ngFor="let department of departments; let i = index" >
-    <div class="custom-control custom-checkbox"  #departmentsRef >
-        <input type="checkbox" class="custom-control-input" id="{{ i }}" >
-        <label [title]="department.departmentId" class="custom-control-label" for="{{ i }}">{{ department.displayName }}</label>
-    </div>   
+<div *ngIf="objects">
+    Total number of objects: {{ objects.total }}
 </div>
-<button  (click)="filterObjectsByDepartments()" type="submit" class="btn btn-primary">filter objecten</button>
 
+
+<div class="container">
+    <div class="row">
+        <aside class="col-sm-3">
+            <div class="card">
+                <article class="card-group-item">
+                    <header class="card-header">
+                        <h6 class="title">Departments </h6>
+                    </header>
+                    <div class="filter-content">
+                        <div class="card-body">
+                            <div *ngFor="let department of departments; let i = index">
+                                <div class="custom-control custom-checkbox" #departmentsRef>
+                                    <input type="checkbox" class="custom-control-input" id="{{ i }}">
+                                    <label [title]="department.departmentId" class="custom-control-label"
+                                        for="{{ i }}"><small>{{ department.displayName }}</small></label>
+                                </div>
+                            </div>
+                            <button (click)="filterObjectsByDepartments()" type="submit" class="btn btn-outline-primary btn-sm">Filter Departments
+                            </button>
+                        </div>                      
+                    </div>
+                </article>
+            </div>
+        </aside>
+        <div class="col-9">
+            <div *ngIf="objectsList.length > 0">
+                <app-display-objects [objects]="objectsList" ></app-display-objects>
+            </div>
+        </div>
+    </div>
+</div>
