@@ -63,23 +63,26 @@ export class FilterObjectsComponent implements OnDestroy, OnInit {
      this.objects = result[1];
      // now that we've got objects, we can create the objectList
     if (result[0] != "cached") {
+      this.objectsList = [];
       this.getObjectList(1);
     }
   });
   }
 
+  test() {
+    this.getObjectList(2);
+  }
 
-  getObjectList(page: number) {
+
+  getObjectList(page: number): ArtObject[] {
 
     let total: number = this.objects.total;
-    let objectIds: number[] = this.objects.objectIDs;
-    if (total < 0 || objectIds.length == 0) {
-      alert("objects not cached!");
-    } 
+    let objectIds: number[] = this.objects.objectIDs; 
     
     this.totalPages = Math.floor(total / 50);
     let start: number = (page - 1) * 50;
     let end: number = (page * 50 < total) ? page * 50 : total;
+    
     if (this.objectsList && this.objectsList.length >= end) {
       return this.objectsList.slice(start, end);
     }

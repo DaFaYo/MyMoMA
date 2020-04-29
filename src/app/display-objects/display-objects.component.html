@@ -1,5 +1,5 @@
-<div class="row">
-    <div *ngFor="let object in objects;" class="col-sm-4">
+<div class="row" >
+    <div class="col-sm-4"  *ngFor="let object of objects">
         <app-display-object [object]="object" ></app-display-object>
     </div>
 </div>

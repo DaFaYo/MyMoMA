@@ -20,17 +20,19 @@
                                         for="{{ i }}"><small>{{ department.displayName }}</small></label>
                                 </div>
                             </div>
-                            <button (click)="filterObjectsByDepartments()" type="submit" class="btn btn-outline-primary btn-sm">Filter Departments
+                            <button (click)="filterObjectsByDepartments()" type="submit" class="btn btn-outline-primary btn-sm">Filter by departments
                             </button>
                         </div>                      
                     </div>
                 </article>
             </div>
         </aside>
-        <div class="col-9">
-            <div *ngIf="objectsList.length > 0">
+        <div class="col">
+            <div *ngIf="objectsList.length > 0" class="container">
                 <app-display-objects [objects]="objectsList" ></app-display-objects>
             </div>
+            <button (click)="test()" type="submit" class="btn btn-outline-primary btn-sm">Show More results
+            </button>
         </div>
     </div>
 </div>
