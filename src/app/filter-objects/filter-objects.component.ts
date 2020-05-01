@@ -93,7 +93,7 @@ export class FilterObjectsComponent implements OnDestroy, OnInit {
             takeUntil(this.ngUnsubscribe)
           )
           .subscribe((artObject: ArtObject) => {
-            console.log("adding object with title:", artObject['title']);
+            //console.log("adding object with title:", artObject['title']);
             this.artObjects.push(artObject);
           });
       });
