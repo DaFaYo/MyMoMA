@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FilterObjectsComponent } from './filter-objects/filter-objects.component';
 import { DisplayObjectsComponent } from './display-objects/display-objects.component';
 import { DisplayObjectComponent } from './display-object/display-object.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { DisplayObjectComponent } from './display-object/display-object.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

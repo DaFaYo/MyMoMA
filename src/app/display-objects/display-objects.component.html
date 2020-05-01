@@ -1,5 +1,19 @@
-<div class="row" >
-    <div class="col-sm-4"  *ngFor="let object of objects">
-        <app-display-object [object]="object" ></app-display-object>
+<div class="row">
+    <div class="col-md-3 col-md-offset-1">
+        <div class="custom-control custom-checkbox">
+            <input #cbxHasImage type="checkbox" [(ngModel)]="hasImage" class="custom-control-input" id="cbxHasImage">
+            <label class="custom-control-label" for="cbxHasImage">Has image</label>
+        </div>
+    </div>
+    <div class="col-md-3 col-md-offset-1">
+        <div class="custom-control custom-checkbox">
+            <input #cbxHasImage type="checkbox" [(ngModel)]="isHighlight" class="custom-control-input" id="cbxIsHighlight">
+            <label class="custom-control-label" for="cbxIsHighlight">Is highlight</label>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4" *ngFor="let artObject of filterArtObjects()">
+        <app-display-object [artObject]="artObject"></app-display-object>
     </div>
 </div>

@@ -11,28 +11,32 @@
                     <header class="card-header">
                         <h6 class="title">Departments </h6>
                     </header>
-                    <div class="filter-content">
-                        <div class="card-body">
-                            <div *ngFor="let department of departments; let i = index">
-                                <div class="custom-control custom-checkbox" #departmentsRef>
-                                    <input type="checkbox" class="custom-control-input" id="{{ i }}">
-                                    <label [title]="department.departmentId" class="custom-control-label"
-                                        for="{{ i }}"><small>{{ department.displayName }}</small></label>
+                    <div *ngIf="departments">
+                        <div class="filter-content">
+                            <div class="card-body">
+                                <div *ngFor="let department of departments; let i = index">
+                                    <div class="custom-control custom-checkbox" #departmentsRef>
+                                        <input type="checkbox" class="custom-control-input" id="{{ i }}">
+                                        <label [title]="department.departmentId" class="custom-control-label"
+                                            for="{{ i }}"><small>{{ department.displayName }}</small></label>
+                                    </div>
                                 </div>
+                                <button (click)="filterObjectsByDepartments()" type="submit"
+                                    class="btn btn-outline-primary btn-sm">Filter by departments
+                                </button>
                             </div>
-                            <button (click)="filterObjectsByDepartments()" type="submit" class="btn btn-outline-primary btn-sm">Filter by departments
-                            </button>
-                        </div>                      
+                        </div>
                     </div>
                 </article>
             </div>
         </aside>
         <div class="col">
-            <div *ngIf="objectsList.length > 0" class="container">
-                <app-display-objects [objects]="objectsList" ></app-display-objects>
+            <div *ngIf="artObjects.length > 0" class="container">
+                <app-display-objects [artObjects]="artObjects"></app-display-objects>
+                <button (click)="getNextArtObjects()" type="submit" class="btn btn-outline-primary btn-sm">Show more
+                    results
+                </button>
             </div>
-            <button (click)="test()" type="submit" class="btn btn-outline-primary btn-sm">Show More results
-            </button>
         </div>
     </div>
 </div>

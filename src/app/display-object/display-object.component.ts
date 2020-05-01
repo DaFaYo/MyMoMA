@@ -8,7 +8,7 @@ import { ArtObject } from '../shared/model/art-object.model';
 })
 export class DisplayObjectComponent implements OnInit {
 
-  @Input() object: ArtObject;
+  @Input() artObject: ArtObject;
  
   constructor() { }
 
