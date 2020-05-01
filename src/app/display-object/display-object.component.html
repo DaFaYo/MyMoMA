@@ -14,9 +14,33 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <div class="modal-body">
-        bla
+    <div class="modal-body" class="container">
+
+        <div *ngIf="images.length >= 1">
+            <div *ngIf="images.length==1;then content else other_content">here is ignored</div>
+        </div>
+
+        <ng-template #content>
+            <img [src]="images[0]" class="img-fluid" alt="Image not available">
+        </ng-template>
+        <ng-template #other_content>
+
+            <ngb-carousel>
+                <ng-container *ngFor="let image of images">
+
+                    <ng-template ngbSlide>
+                        <div class="picsum-img-wrapper">
+                          <img src="{{ image }}" alt="Image not available" class="img-fluid">
+                        </div>
+                      </ng-template>
+
+                </ng-container>
+              </ngb-carousel>
+
+        </ng-template>
+
     </div>
+
     <div class="modal-footer">
         more bla
     </div>
