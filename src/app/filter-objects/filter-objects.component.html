@@ -1,11 +1,10 @@
-<div *ngIf="objects">
-    Total number of objects: {{ objects.total }}
-</div>
-
-
 <div class="container">
     <div class="row">
         <aside class="col-sm-3">
+            <div *ngIf="objects">
+
+                {{ objects.total }} works found
+            </div>
             <div class="card">
                 <article class="card-group-item">
                     <header class="card-header">
@@ -22,7 +21,7 @@
                                     </div>
                                 </div>
                                 <button (click)="filterObjectsByDepartments()" type="submit"
-                                    class="btn btn-outline-primary btn-sm">Filter by departments
+                                    class="btn btn-outline-primary btn-sm">Filter by department
                                 </button>
                             </div>
                         </div>
@@ -31,11 +30,40 @@
             </div>
         </aside>
         <div class="col">
-            <div *ngIf="artObjects.length > 0" class="container">
-                <app-display-objects [artObjects]="artObjects"></app-display-objects>
-                <button (click)="getNextArtObjects()" type="submit" class="btn btn-outline-primary btn-sm">Show more
-                    results
-                </button>
+            <div class="container">
+                <div class="input-group mb-3">
+                    <input #search type="text" class="form-control" placeholder="Search artists and works"
+                        (keyup.enter)="searchObjects()" [(ngModel)]="searchValue" aria-label="Search artists and works" aria-describedby="button-addon">
+                    <div class="input-group-append">
+                        <button (click)="searchObjects()" class="btn btn-outline-secondary" type="button" id="button-addon">Search</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-md-offset-1">
+                        <div class="custom-control custom-checkbox">
+                            <input #cbxHasImage type="checkbox" [(ngModel)]="hasImage" class="custom-control-input"
+                                id="cbxHasImage">
+                            <label class="custom-control-label" for="cbxHasImage">Has image</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-md-offset-1">
+                        <div class="custom-control custom-checkbox">
+                            <input #cbxHasImage type="checkbox" [(ngModel)]="isHighlight" class="custom-control-input"
+                                id="cbxIsHighlight">
+                            <label class="custom-control-label" for="cbxIsHighlight">Is highlight</label>
+                        </div>
+                    </div>
+                </div>
+                <ng-container *ngIf="artObjects.length > 0">
+                    <div class="row">
+                        <div class="col-sm-4" *ngFor="let artObject of filterArtObjects()">
+                            <app-display-object [artObject]="artObject"></app-display-object>
+                        </div>
+                    </div>
+                    <button (click)="getNextArtObjects()" type="submit" class="btn btn-outline-primary btn-sm">Show more
+                        results
+                    </button>
+                </ng-container>          
             </div>
         </div>
     </div>

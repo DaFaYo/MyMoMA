@@ -18,6 +18,10 @@ export class FilterObjectsComponent implements OnDestroy, OnInit {
   private counter: number = 0;
   private amount: number = 50;
 
+  hasImage: boolean = true;
+  isHighlight: boolean = false;
+  searchValue: string = "";
+
   public artObjects: ArtObject[] = [];
   public objects: Objects;  // { "total": 471581, "objectIDs": [1, 2, 3, ..., 471581] }
   public departments: Department[];
@@ -36,6 +40,7 @@ export class FilterObjectsComponent implements OnDestroy, OnInit {
 
   filterObjectsByDepartments(): void {
 
+    this.searchValue = "";
     let departments: string[] = [];
     let selectedDepartments: ElementRef<any>[] = this.cbxDepartments.toArray();
 
@@ -63,8 +68,22 @@ export class FilterObjectsComponent implements OnDestroy, OnInit {
         // now that we've got objects, we can create the objectList
         if (result[0] != "cached") {
           this.artObjects = [];
+          this.counter = 0;
           this.getNextArtObjects();
         }
+      });
+  }
+
+
+  searchObjects(): void {
+    this.objectService.searchObjects(this.searchValue).pipe(
+      takeUntil(this.ngUnsubscribe)
+    )
+      .subscribe((objects: Objects) => {
+        this.objects = objects;
+        this.artObjects = [];
+        this.counter = 0;
+        this.getNextArtObjects();
       });
   }
 
@@ -101,6 +120,29 @@ export class FilterObjectsComponent implements OnDestroy, OnInit {
       return this.artObjects.slice(start, end);
     }
   }
+
+
+  filterArtObjects(): ArtObject[] {
+
+    if (!this.hasImage && !this.isHighlight) {
+      return this.artObjects;
+    } else {
+
+      let filteredArtObjects = [];
+
+      if (this.hasImage) {
+        filteredArtObjects = this.artObjects.filter(
+          (artObject: ArtObject) => (artObject.primaryImageSmall && artObject.primaryImageSmall != ""));
+      }
+
+      if (this.isHighlight) {
+        filteredArtObjects = filteredArtObjects.filter(
+          (artObject: ArtObject) => artObject.isHighlight);
+      }
+      return filteredArtObjects;
+    }
+  }
+
 
 
   getDepartments(): void {

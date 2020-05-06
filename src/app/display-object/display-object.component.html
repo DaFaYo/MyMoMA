@@ -25,23 +25,78 @@
         </ng-template>
         <ng-template #other_content>
 
-            <ngb-carousel>
+            <ngb-carousel interval="false">
                 <ng-container *ngFor="let image of images">
 
                     <ng-template ngbSlide>
                         <div class="picsum-img-wrapper">
-                          <img src="{{ image }}" alt="Image not available" class="img-fluid">
+                            <img src="{{ image }}" alt="Image not available" class="img-fluid">
                         </div>
-                      </ng-template>
+                    </ng-template>
 
                 </ng-container>
-              </ngb-carousel>
+            </ngb-carousel>
 
         </ng-template>
+        <div *ngIf="artObject.artistDisplayName">
+            <ng-container *ngIf="artObject.constituents.length > 0; else artistDisplayName">
+                <div  *ngFor="let constituent of artObject.constituents">
+                    <p>artist name: <a href="{{ constituent.constituentWikidata_URL }}" target="_blank">{{ constituent.name }}</a></p>
+                </div>
+            </ng-container>
+            <ng-template #artistDisplayName>
+                artist name: {{ artObject.artistDisplayName }}
+            </ng-template>
+        </div>
+        <div *ngIf="artObject.artistDisplayBio">
+            biography: {{ artObject.artistDisplayBio }}
+        </div>
+        <div *ngIf="artObject.artistGender">
+            gender: {{ artObject.artistGender }}
+        </div>
+        <div *ngIf="artObject.objectName">
+            object name: {{ artObject.objectName }}
+        </div>
+        <div *ngIf="artObject.objectDate">
+            object date: {{ artObject.objectDate }}
+        </div>
+        <div *ngIf="artObject.department">
+            department: {{ artObject.department }}
+        </div>
+        <div *ngIf="artObject.culture">
+            culture: {{ artObject.culture }}
+        </div>
+        <div *ngIf="artObject.period">
+            period: {{ artObject.period }}
+        </div>
+
+        <div *ngIf="artObject.medium">
+            medium: {{ artObject.medium }}
+        </div>
+        <div *ngIf="artObject.dimensions">
+            dimensions: {{ artObject.dimensions }}
+        </div>
+        <div *ngIf="artObject.creditLine">
+            credit: {{ artObject.creditLine }}
+        </div>
+        <div *ngIf="artObject.repository">
+            repository: {{ artObject.repository }}
+        </div>
+        <hr class="my-4">
+        <h5>Links</h5>
+        <div *ngIf="artObject.objectURL">
+            MoMA url: <a href="{{ artObject.objectURL }}" target="_blank">{{ artObject.objectURL }}</a>
+        </div>
+        <div *ngIf="artObject.objectWikidata_URL">
+            wiki url: <a href="{{ artObject.objectWikidata_URL }}" target="_blank">{{ artObject.objectWikidata_URL }}</a>
+        </div>
 
     </div>
 
     <div class="modal-footer">
-        more bla
+        <ng-container *ngIf="artObject.tags.length > 0">
+            <div>Tags:</div>
+            <a  *ngFor="let tag of artObject.tags" href="{{ tag.AAT_URL }}" target="_blank">{{ tag.term }}</a>
+        </ng-container>
     </div>
 </ng-template>

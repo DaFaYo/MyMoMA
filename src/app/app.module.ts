@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FilterObjectsComponent } from './filter-objects/filter-objects.component';
-import { DisplayObjectsComponent } from './display-objects/display-objects.component';
 import { DisplayObjectComponent } from './display-object/display-object.component';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -13,7 +12,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   declarations: [
     AppComponent,
     FilterObjectsComponent,
-    DisplayObjectsComponent,
     DisplayObjectComponent
   ],
   imports: [
