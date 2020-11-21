@@ -1,4 +1,4 @@
-import { Component, OnInit, QueryList, ViewChildren, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren, ElementRef, OnDestroy, isDevMode } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Objects } from '../shared/model/objects.model';
 import { ObjectService } from '../shared/service/object.service';
@@ -40,6 +40,7 @@ export class FilterObjectsComponent implements OnDestroy, OnInit {
 
   filterObjectsByDepartments(): void {
 
+    console.log("Is in developer mode? : ", isDevMode());
     this.searchValue = "";
     let departments: string[] = [];
     let selectedDepartments: ElementRef<any>[] = this.cbxDepartments.toArray();
