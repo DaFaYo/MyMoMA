@@ -13,7 +13,7 @@ export class ObjectService {
   private departmentIdsCache: string;
   private objectsCache: Objects;
   private departmentsCache: Department[];
-  
+
   url: string = "https://collectionapi.metmuseum.org/public/collection/v1";
 
   constructor(private http: HttpClient) { }
@@ -52,9 +52,9 @@ export class ObjectService {
 
   }
 
-  searchObjects(searchValue: string): Observable<Objects>  {
-      return this.http.get<Objects>(this.url + `/search?q=${searchValue}`);
-      
+  searchObjects(searchValue: string): Observable<Objects> {
+    return this.http.get<Objects>(this.url + `/search?q=${searchValue}`);
+
   }
 
 
